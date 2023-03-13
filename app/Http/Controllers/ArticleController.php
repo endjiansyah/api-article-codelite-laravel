@@ -122,7 +122,7 @@ class ArticleController extends Controller
         if ($request->hasFile('media')) {
             $file = $request->file('media');
             $filename = $file->hashName();
-            // $file->move('media', $filename);
+            $file->move('media', $filename);
             $path = $request->getSchemeAndHttpHost() . '/media/' . $filename;
             $payload['media'] = $path;
 

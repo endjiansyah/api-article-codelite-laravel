@@ -8,17 +8,26 @@ use Illuminate\Support\Facades\Validator;
 
 class ArticleController extends Controller
 {
-    function index()
+    function index(Request $request)
     {
         $article = Article::query()
         ->join('category', 'article.id_category', '=', 'category.id')
-        ->select('article.*','category.name as article_category')
-        ->get();
+        ->select('article.*','category.name as article_category');
+        
+        if ($request->has('category')) {
+            $article->where('article.id_category', $request->category);
+        }
+
+        $page = $request->get('page', 1);
+        $limit = $request->get('limit',10);
+        $offset = ($page - 1) * $limit;
+
+        $articles = $article->offset($offset)->limit($limit)->get();
 
         return response()->json([
             "status" => true,
             "message" => "list article",
-            "data" => $article
+            "data" => $articles
         ]);
     }
 

@@ -11,7 +11,7 @@ class ArticleController extends Controller
     function index(Request $request)
     {
         $article = Article::query()
-        ->join('category', 'article.id_category', '=', 'category.id')
+        ->leftjoin('category', 'article.id_category', '=', 'category.id')
         ->select('article.*','category.name as article_category');
         
         if ($request->has('category')) {
@@ -19,7 +19,7 @@ class ArticleController extends Controller
         }
 
         $page = $request->get('page', 1);
-        $limit = $request->get('limit',10);
+        $limit = $request->get('limit',-1);
         $offset = ($page - 1) * $limit;
 
         $articles = $article->offset($offset)->limit($limit)->get();
@@ -36,7 +36,7 @@ class ArticleController extends Controller
         $article = Article::query()
             ->select('article.*','category.name as article_category')
             ->where("article.id", $id)
-            ->join('category', 'article.id_category', '=', 'category.id')
+            ->leftjoin('category', 'article.id_category', '=', 'category.id')
             ->first();
 
         if (!isset($article)) {

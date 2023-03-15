@@ -261,7 +261,7 @@ class ArticleController extends Controller
 
         return response()->json([
             "status" => true,
-            "message" => "article with id ".$idmedia,
+            "message" => "media article with id ".$idmedia,
             "data" => $media
         ]);
     }
@@ -348,7 +348,7 @@ class ArticleController extends Controller
 
         return response()->json([
             "status" => true,
-            "message" => "data deleted successfully",
+            "message" => "data delete successfully",
             "data" => $media
         ]);
     }

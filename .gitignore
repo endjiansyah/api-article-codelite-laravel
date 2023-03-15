@@ -18,3 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 /public/media
+.dockerignore
+Dockerfile
+fly.toml
+.fly

@@ -32,3 +32,7 @@ Route::get("/article/{id}", [ArticleController::class, "show"]);
 Route::post("/article", [ArticleController::class, "store"]);
 Route::post("/article/{id}/edit", [ArticleController::class, "update"]);
 Route::post("/article/{id}/delete", [ArticleController::class, "destroy"]);
+Route::post("/article/{id}/media", [ArticleController::class, "ArticleMediaCreate"]);
+Route::get("/media/{idmedia}", [ArticleController::class, "showmedia"]);
+Route::post("/media/{idmedia}/update", [ArticleController::class, "MediaUpdate"]);
+Route::post("/media/{idmedia}/delete", [ArticleController::class, "destroymedia"]);
